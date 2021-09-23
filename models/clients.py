@@ -103,6 +103,6 @@ class client:
 
 if __name__ == '__main__':
 	
-	obj = client('Luis Esteban', 'Acevedo', 'Bringas', datetime(1999, 2, 15), '000111213')
+	obj = client('Juan', 'Alvarez', 'Garcia', datetime(2003, 4, 17), '000111213')
 	obj.__str__()
 
