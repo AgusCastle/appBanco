@@ -3,4 +3,5 @@ class user(object):
 	def __init__(self, arg):
 		super(user, self).__init__()
 		self.arg = arg
-		
+
+#Saludos
