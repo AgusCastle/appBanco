@@ -9,7 +9,6 @@ class client:
 		self._lastname = lastname
 		self._lastlname = lastlname
 		self._datebirth = datebirth
-
 		self._account = account
 		self._rfc = self.generateRFC()
 		self._years = self.calculatedYears()
@@ -100,9 +99,7 @@ class client:
 		print(message1)
 
 
-
 if __name__ == '__main__':
 	
 	obj = client('Juan', 'Alvarez', 'Garcia', datetime(2003, 4, 17), '000111213')
 	obj.__str__()
-
