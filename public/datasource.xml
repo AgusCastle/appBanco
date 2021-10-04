@@ -35,4 +35,40 @@
             <balance>0.00</balance>
         </user>
     </users>
+    <users>
+        <user id="1004">
+            <name>Luis</name>
+            <lastname>Acevedo</lastname>
+            <lastlname>Bringas</lastlname>
+            <day>15</day>
+            <mouth>2</mouth>
+            <year>1999</year>
+            <nip>9999</nip>
+            <balance>0.00</balance>
+        </user>
+    </users>
+    <users>
+        <user id="1005">
+            <name>Agustin</name>
+            <lastname>Castillo</lastname>
+            <lastlname>Munguia</lastlname>
+            <day>14</day>
+            <mouth>3</mouth>
+            <year>1999</year>
+            <nip>1234</nip>
+            <balance>0.00</balance>
+        </user>
+    </users>
+    <users>
+        <user id="1006">
+            <name>Harumi</name>
+            <lastname>Acevedo</lastname>
+            <lastlname>Bringas</lastlname>
+            <day>1</day>
+            <mouth>1</mouth>
+            <year>2021</year>
+            <nip>2345</nip>
+            <balance>0.00</balance>
+        </user>
+    </users>
 </data>
