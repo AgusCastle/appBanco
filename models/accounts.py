@@ -29,12 +29,6 @@ class account:
 
         return message
 
-if __name__ == '__main__':
-    cuenta = account('10001', '5050', 340.30)
-    print(cuenta.__str__())
-    cuenta.addMoney(500.34)
-    print(cuenta.__str__())
-
 
 
 

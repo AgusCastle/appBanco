@@ -10,7 +10,7 @@ ApplicationWindow {
     Image { //Asignamos imagen de fondo
     sourceSize.width: parent.width
     sourceSize.height: parent.height
-    source: "Images/Background.jpeg"
+    source: "../Pictures/Background.jpeg"
     fillMode: Image.PreserveAspectCrop
     }
 
@@ -26,7 +26,7 @@ ApplicationWindow {
         Image {
             sourceSize.width: parent.width
             sourceSize.height: parent.height
-            source: "Images/Return.png"
+            source: "../Pictures/Return.png"
             fillMode: Image.PreserveAspectCrop
         }
         MouseArea{
@@ -80,7 +80,7 @@ ApplicationWindow {
                 } 
                 width:110
                 height:110
-                source: "Images/Transfer.png"
+                source: "../Pictures/Transfer.png"
             }
         }
 

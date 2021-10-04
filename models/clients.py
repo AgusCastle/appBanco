@@ -2,7 +2,7 @@ from datetime import datetime
 from random import choice
 from string import ascii_letters, digits
 
-class client:
+class client(object):
     """docstring for client"""
     def __init__(self, name, lastname, lastlname, datebirth, account):
         self._name = name
@@ -12,6 +12,19 @@ class client:
         self._account = account
         self._rfc = self.generateRFC()
         self._years = self.calculatedYears()
+
+    def toDicctionary(self):
+        obj = {
+            'name': self._name,
+            'lastname': self._lastname,
+            'lastlname': self._lastlname,
+            'date': self._datebirth.generar_fecha_letra(),
+            'accountN': self._account.numberAcc,
+            'balance': self._account.balance,
+            'rfc': self._rfc,
+            'years': self._years
+        }
+        return obj
 
     @property
     def name(self):

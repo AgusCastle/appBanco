@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 ApplicationWindow {
+    property var nombre
+
     visible: true
     width: 1200
     height: 700 
@@ -10,7 +12,7 @@ ApplicationWindow {
     Image { //Asignamos imagen de fondo
     sourceSize.width: parent.width
     sourceSize.height: parent.height
-    source: "Images/Background.jpeg"
+    source: "../Pictures/Background.jpeg"
     fillMode: Image.PreserveAspectCrop
     }
 
@@ -25,7 +27,7 @@ ApplicationWindow {
         Image {
             sourceSize.width: parent.width
             sourceSize.height: parent.height
-            source: "Images/Exit.png"
+            source: "../Pictures/Exit.png"
             fillMode: Image.PreserveAspectCrop
         }
         MouseArea{
@@ -56,7 +58,7 @@ ApplicationWindow {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
-                text: "Bienvenido, Luis"
+                text: "Bienvenido, " + nombre["name"]
                 font.pixelSize: 40
                 color: "white"
             }
@@ -92,7 +94,8 @@ ApplicationWindow {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
-                text: "$ 4,000.00"
+            
+                text: "$ " + nombre["balance"]
                 font.pixelSize: 35
                 color: "white"
             }
@@ -114,7 +117,7 @@ ApplicationWindow {
                     } 
                     width:110
                     height:110
-                    source: "Images/Deposit.png"
+                    source: "../Pictures/Deposit.png"
                 }
                 MouseArea{
                     width: 125
@@ -154,12 +157,12 @@ ApplicationWindow {
                     } 
                     width:110
                     height:110
-                    source: "Images/Transfer.png"
+                    source: "../Pictures/Transfer.png"
                 }
                 MouseArea{
                     width: 125
                     height:125
-                    cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+                    cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
                 }
             }
             Rectangle{
@@ -194,7 +197,7 @@ ApplicationWindow {
                     } 
                     width:110
                     height:110
-                    source: "Images/Information.png"
+                    source: "../Pictures/Information.png"
                 }
                 MouseArea{
                     width: 125

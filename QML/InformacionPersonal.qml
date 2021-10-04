@@ -10,7 +10,7 @@ ApplicationWindow {
     Image { //Asignamos imagen de fondo
     sourceSize.width: parent.width
     sourceSize.height: parent.height
-    source: "Images/Background.jpeg"
+    source: "../Pictures/Background.jpeg"
     fillMode: Image.PreserveAspectCrop
     }
 
@@ -79,7 +79,7 @@ ApplicationWindow {
                 } 
                 width:110
                 height:110
-                source: "Images/Information.png"
+                source: "../Pictures/Information.png"
             }
         }
 

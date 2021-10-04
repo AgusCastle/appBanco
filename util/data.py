@@ -1,14 +1,15 @@
-from datetime import datetime
 from xml.dom import minidom
+from xml.etree.ElementTree import parse
 import xml.etree.cElementTree as element
 from models.clients import client, Fecha
 from models.accounts import account
 #Modificar
 
-root = element.Element('data')
-doc = element.SubElement(root, 'users')
-
 def addUserXML(account, name, lastname, lastlname, day, mouth, year, nip, balance):
+
+    et = parse('public/datasource.xml')
+    root = et.getroot()
+    doc = element.SubElement(root, 'users')
 
     usr = element.SubElement(doc, 'user',id = account)
     element.SubElement(usr, 'name').text = name
@@ -44,9 +45,17 @@ def obtenerUsers():
 
         client_u = client(str(name), str(lastname), str(lastlname), Fecha(int(day), int(mouth), int(year)), account_u)
         listUsers.append(client_u)
-    
     return listUsers
 
+def getUltimoId():
+    listU = obtenerUsers()
+    size = len(obtenerUsers()) - 1
 
+    return listU[size].account.numberAcc
 
-
+def getObjectClient(idb):
+    listU = obtenerUsers()
+    for usr in listU:
+        if idb == usr.account.numberAcc:
+            return usr.toDicctionary()
+    return None

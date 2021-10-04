@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import QtQuick.Dialogs 1.1
 
 ApplicationWindow {
     visible: true
@@ -10,7 +11,7 @@ ApplicationWindow {
     Image { //Asignamos imagen de fondo
         sourceSize.width: parent.width
         sourceSize.height: parent.height
-        source: "Images/Background.jpeg"
+        source: "../Pictures/Background.jpeg"
         fillMode: Image.PreserveAspectCrop
     }
 
@@ -35,7 +36,7 @@ ApplicationWindow {
                 } 
                 width:225
                 height:130
-                source: "Images/BCRR_Logo.png"
+                source: "../Pictures/BCRR_Logo.png"
             }
         }
 
@@ -82,8 +83,9 @@ ApplicationWindow {
                 height: 40
                 font.pixelSize:20
                 color: "white"
-
-                property string placeholderText: "Numero de cuenta: "
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
+                property string placeholderText: "Numero de cuenta"
 
                 Text {
                     anchors {
@@ -124,8 +126,11 @@ ApplicationWindow {
                 height: 40
                 font.pixelSize:20
                 color: "white"
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
+                echoMode: TextInput.Password
 
-                property string placeholderText: "NIP: "
+                property string placeholderText: "NIP"
 
                 Text {
                     anchors {
@@ -137,7 +142,13 @@ ApplicationWindow {
                     visible: !nip.text && !nip.activeFocus
                     font.pixelSize:20
                     opacity: 0.7
+                    
                 }
+
+                onTextChanged: {
+                verticalCenter: parent.verticalCenter
+                horizontalCenter: parent.horizontalCenter
+            }
             }
         }
 
@@ -149,13 +160,49 @@ ApplicationWindow {
             y: 470
             width: 100
             height: 40
-            color: "#424B54"
+            color: mouser.containsMouse ? "red" : "#424B54"
+                Behavior on color {
+                    ColorAnimation {duration: 250}
+                }
+                MouseArea {
+                    id: mouser
+                    anchors.fill: parent
+                    hoverEnabled: true
+                }
+
             radius: 5
 
+            MessageDialog {
+                id: messageDialog
+                title: "Aviso"
+                text: "Error"
+                onAccepted: {
+                    messageDialog.close()
+                }
+                Component.onCompleted: visible = false
+            }
+            
             MouseArea{
                 width: 100
                 height:40
-                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+
+                onClicked:{
+                    var resultado = con.sessionClient(numeroCuenta.text, nip.text)
+                    if (resultado == true){
+                        //messageDialog.text= "Inicio de sesion correcto"
+                        //messageDialog.visible = true
+                        var cmpt = Qt.createComponent("./MenuPrincipal.qml")
+                        var win = cmpt.createObject()
+                        win.nombre = con.getObjectModelClient(numeroCuenta.text)
+                        win.show()
+                        //appInicio.close()
+                    }
+                    else{
+                        messageDialog.text= "NIP o cuenta incorrecta"
+                        messageDialog.visible = true
+                    }
+                }
             }
 
             Text {
@@ -167,6 +214,8 @@ ApplicationWindow {
                 font.pixelSize: 24
                 color: "white"
             }
+
+            
         }
 
 // -------------- Crear cuenta -------------- //
@@ -182,7 +231,10 @@ ApplicationWindow {
             MouseArea{
                 width: 100
                 height:40
-                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+                id: mousers
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
             }
 
             Text {
@@ -192,7 +244,10 @@ ApplicationWindow {
                 }
                 text: "Crear una cuenta"
                 font.pixelSize: 18
-                color: "white"
+                color: mousers.containsMouse ? "#424B54" : "white"
+                Behavior on color {
+                    ColorAnimation {duration: 250}
+                }
             }
         }
     }

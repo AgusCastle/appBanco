@@ -2,6 +2,8 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls 2.1 //ComboBox
 
+import QtQuick.Dialogs 1.1
+
 ApplicationWindow {
     visible: true
     width: 1200
@@ -11,7 +13,7 @@ ApplicationWindow {
     Image { //Asignamos imagen de fondo
         sourceSize.width: parent.width
         sourceSize.height: parent.height
-        source: "Images/Background.jpeg"
+        source: "../Pictures/Background.jpeg"
         fillMode: Image.PreserveAspectCrop
     }
 
@@ -26,7 +28,7 @@ ApplicationWindow {
         Image {
             sourceSize.width: parent.width
             sourceSize.height: parent.height
-            source: "Images/Return.png"
+            source: "../Pictures/Return.png"
             fillMode: Image.PreserveAspectCrop
         }
         MouseArea{
@@ -88,10 +90,12 @@ ApplicationWindow {
                 id: nombre
                 width: 300
                 height: 40
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
                 font.pixelSize:20
                 color: "white"
 
-                property string placeholderText: "Nombre(s): "
+                property string placeholderText: "Nombre(s)"
 
                 Text {
                     anchors {
@@ -130,10 +134,12 @@ ApplicationWindow {
                 id: apellidoPaterno
                 width: 300
                 height: 40
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
                 font.pixelSize:20
                 color: "white"
 
-                property string placeholderText: "Apellido paterno: "
+                property string placeholderText: "Apellido paterno"
 
                 Text {
                     anchors {
@@ -172,10 +178,12 @@ ApplicationWindow {
                 id: apellidoMaterno
                 width: 300
                 height: 40
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
                 font.pixelSize:20
                 color: "white"
 
-                property string placeholderText: "Apellido materno:  "
+                property string placeholderText: "Apellido materno"
 
                 Text {
                     anchors {
@@ -214,10 +222,13 @@ ApplicationWindow {
                 id: nip
                 width: 300
                 height: 40
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
+                echoMode: TextInput.Password
                 font.pixelSize:20
                 color: "white"
 
-                property string placeholderText: "NIP:  "
+                property string placeholderText: "NIP"
 
                 Text {
                     anchors {
@@ -256,10 +267,13 @@ ApplicationWindow {
                 id: confirmarnip
                 width: 300
                 height: 40
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
+                echoMode: TextInput.Password
                 font.pixelSize:20
                 color: "white"
 
-                property string placeholderText: "Confirmar NIP:  "
+                property string placeholderText: "Confirmar NIP"
 
                 Text {
                     anchors {
@@ -301,6 +315,7 @@ ApplicationWindow {
             height: 40
             y: 525
             color:"transparent"
+            
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
@@ -331,7 +346,8 @@ ApplicationWindow {
             }
 
             ComboBox { //Año
-                id: ano
+                function comboBoxNum(){var array = []; for(var i = 1950; i < 2022; i++){array.push(i);} return array;}
+                id: anio
                 MouseArea{
                     width: 275
                     height:40
@@ -340,9 +356,20 @@ ApplicationWindow {
                 x: 275
                 width: 90
                 height: 40
-                model: [ "1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021" ]
+                model: comboBoxNum()
+                currentIndex: 71
             }
         }
+
+        MessageDialog {
+                id: messageDialog
+                title: "Aviso"
+                text: "Error"
+                onAccepted: {
+                    messageDialog.close()
+                }
+                Component.onCompleted: visible = false
+            }
 
 // -------------- Boton Enviar -------------- //
         Rectangle {
@@ -352,12 +379,28 @@ ApplicationWindow {
             MouseArea{
                 width: 300
                 height:40
-                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+                id: mouser
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onClicked:{
+                    if(nombre.text != "" && apellidoPaterno.text != "" && apellidoMaterno.text != "" && nip.text != "" && confirmarnip.text != "" && nip.text == confirmarnip.text){
+                        var result = con.addClient(nombre.text, apellidoPaterno.text, apellidoMaterno.text, dia.currentIndex + 1, mes.currentIndex + 1, anio.currentValue, nip.text)
+                        if (result){
+                            messageDialog.text= "Usuario agregado"
+                            messageDialog.visible = true
+                        }
+                    }
+                }
             }
             y: 600
             width: 100
             height: 40
-            color: "#424B54"
+            color: mouser.containsMouse ? "#00BB2D" : "#424B54"
+                Behavior on color {
+                    ColorAnimation {duration: 250}
+                }
             radius: 5
 
             Text {
