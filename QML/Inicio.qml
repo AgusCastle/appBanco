@@ -3,6 +3,8 @@ import QtQuick.Controls 2.15
 import QtQuick.Dialogs 1.1
 
 ApplicationWindow {
+    property string nombre: "Raul"
+    id: ventanaInicio
     visible: true
     width: 1200
     height: 700 
@@ -13,6 +15,10 @@ ApplicationWindow {
         sourceSize.height: parent.height
         source: "../Pictures/Background.jpeg"
         fillMode: Image.PreserveAspectCrop
+    }
+    
+    StackView{
+        id: stack
     }
 
     Rectangle{ //Area de trabajo real
@@ -192,10 +198,12 @@ ApplicationWindow {
                     if (resultado == true){
                         //messageDialog.text= "Inicio de sesion correcto"
                         //messageDialog.visible = true
-                        var cmpt = Qt.createComponent("./MenuPrincipal.qml")
-                        var win = cmpt.createObject()
-                        win.nombre = con.getObjectModelClient(numeroCuenta.text)
-                        win.show()
+                        // var cmpt = Qt.createComponent("./MenuPrincipal.qml")
+                        // var win = cmpt.createObject()
+                        // win.nombre = con.getObjectModelClient(numeroCuenta.text)
+                        // win.show()
+                        stack.push("./MenuPrincipal.qml")
+                        ventanaInicio.visible = false
                         //appInicio.close()
                     }
                     else{
@@ -214,19 +222,19 @@ ApplicationWindow {
                 font.pixelSize: 24
                 color: "white"
             }
-
-            
         }
 
 // -------------- Crear cuenta -------------- //
-        Rectangle {
+        Button {
             anchors {
                     horizontalCenter: parent.horizontalCenter
             }
             y: 650
             width: 100
             height: 40
-            color: "transparent"
+            background: Rectangle{
+                color: "transparent"
+            }
 
             MouseArea{
                 width: 100
@@ -235,6 +243,10 @@ ApplicationWindow {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+                onClicked: {
+                    ventanaInicio.visible = false
+                    stack.push("./CrearCuenta.qml")
+                }
             }
 
             Text {
