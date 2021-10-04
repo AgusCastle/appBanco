@@ -12,11 +12,6 @@ def main():
     context = engine.rootContext()
     context.setContextProperty("con", con)
 
-    #engine.load('QML\Inicio.qml')
-    engine.load("QML\CrearCuenta.qml")
-    #engine.load("QML\MenuPrincipal.qml")
-    # engine.load("Depositar.qml")
-    # engine.load("Retirar.qml")
-    # engine.load("InformacionPersonal.qml")
+    engine.load('QML/Inicio.qml')
 
     sys.exit(app.exec())
