@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-ApplicationWindow {
+ApplicationWindow  {
     visible: true
     width: 1200
     height: 700 
@@ -14,7 +14,7 @@ ApplicationWindow {
     fillMode: Image.PreserveAspectCrop
     }
 
-    // -------------- Boton Salir -------------- //
+// -------------- Boton Salir -------------- //
     Rectangle{
         id: exitMenuPrincipal
         x: 10
@@ -35,7 +35,8 @@ ApplicationWindow {
         }
     }
 
-    Rectangle { //Area de trabajo
+// -------------- Area de trabajo real -------------- //
+    Rectangle { 
         anchors {
             verticalCenter: parent.verticalCenter
             horizontalCenter: parent.horizontalCenter
