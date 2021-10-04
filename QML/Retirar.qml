@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 ApplicationWindow {
+    id: ventanaRetirar
     visible: true
     width: 1200
     height: 700 
@@ -13,7 +14,6 @@ ApplicationWindow {
     source: "../Pictures/Background.jpeg"
     fillMode: Image.PreserveAspectCrop
     }
-
 
 // -------------- Boton Salir -------------- //
     Rectangle{
@@ -32,7 +32,11 @@ ApplicationWindow {
         MouseArea{
             width: 30
             height:30
-            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+            onClicked: {
+                stack.push("./MenuPrincipal.qml")
+                ventanaRetirar.visible = false
+            }
         }
     }
 
@@ -45,7 +49,7 @@ ApplicationWindow {
         height: 700
         color: "transparent"
 
-// -------------- Texto "Depositar" -------------- //
+// -------------- Texto "Retirar" -------------- //
         Rectangle{
             anchors {
                 horizontalCenter: parent.horizontalCenter
@@ -63,7 +67,7 @@ ApplicationWindow {
             }
         }
 
-// -------------- Imagen depositar -------------- //
+// -------------- Imagen retirar -------------- //
         Rectangle{
             anchors{
                 horizontalCenter: parent.horizontalCenter
@@ -84,7 +88,7 @@ ApplicationWindow {
             }
         }
 
-// -------------- Texto "Monto a depositar" -------------- //
+// -------------- Texto "Monto a retirar" -------------- //
         Rectangle{
             anchors {
                 horizontalCenter: parent.horizontalCenter
@@ -114,7 +118,7 @@ ApplicationWindow {
             border.color:"#424B54"
             border.width: 2.5
             radius: 5
-
+            
             MouseArea{
                 width: 300
                 height:40
@@ -127,7 +131,8 @@ ApplicationWindow {
                 height: 40
                 font.pixelSize:20
                 color: "white"
-
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
                 property string placeholderText: "Monto:"
 
                 Text {
