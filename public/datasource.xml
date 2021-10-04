@@ -1,0 +1,24 @@
+<data>
+    <users>
+        <user id="1001">
+            <name>Juan</name>
+            <lastname>Perez</lastname>
+            <lastlname>Madrigal</lastlname>
+            <day>12</day>
+            <mouth>12</mouth>
+            <year>1999</year>
+            <nip>5912</nip>
+            <balance>1000.00</balance>
+        </user>
+        <user id="1002">
+            <name>Leonardo</name>
+            <lastname>Gonzales</lastname>
+            <lastlname>Manjarrez</lastlname>
+            <day>20</day>
+            <mouth>08</mouth>
+            <year>2001</year>
+            <nip>7100</nip>
+            <balance>12.00</balance>
+        </user>
+    </users>
+</data>

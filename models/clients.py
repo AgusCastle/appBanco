@@ -62,7 +62,7 @@ class client:
     ###### Methods ########
 
     def calculatedYears(self):
-        old = datetime.now() - self._datebirth
+        old = datetime.now() - datetime(self._datebirth.anio, self._datebirth.mes, self._datebirth.dia)
         return int(old.days / 365)
 
     def generateRFC(self):
@@ -82,7 +82,8 @@ class client:
         rfc += firstVocal(self._lastname)
         rfc += self._lastlname[0]
         rfc += self._name[0]
-        rfc += self._datebirth.strftime('%y%m%d')
+        dateb = datetime(self._datebirth.anio, self._datebirth.mes, self._datebirth.dia)
+        rfc += dateb.strftime('%y%m%d')
 
         def generateHomoclave():
             return ''.join(choice(ascii_letters + digits) for _ in range(3))
@@ -93,10 +94,10 @@ class client:
 
     def __str__(self):
         message1 = ('Nombre del cliente: {}\n'.format(self._name + ' '+ self._lastname + ' ' + self._lastlname))
-        message1 += ('Fecha de nacimiento: {}\n'.format(self._datebirth.strftime('%d/%m/%Y')))
+        message1 += ('Fecha de nacimiento: {}\n'.format(self._datebirth.generar_fecha_letra()))
         message1 += ('RFC: {}\n'.format(self._rfc))
         message1 += ('Edad: {}\n'.format(self._years))
-        print(message1)
+        return message1
 
 class Fecha:
 
@@ -170,8 +171,3 @@ class Fecha:
 
     def __str__(self):
         return f'{self._dia}/{self._mes}/{self._anio}'
-
-if __name__ == '__main__':
-
-    obj = client('Juan', 'Alvarez', 'Garcia', datetime(2003, 4, 17), '000111213')
-    obj.__str__()
