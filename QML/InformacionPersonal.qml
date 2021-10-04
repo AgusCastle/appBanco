@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 ApplicationWindow {
+    id: ventanaInformacionPersonal
     visible: true
     width: 1200
     height: 700 
@@ -25,13 +26,17 @@ ApplicationWindow {
         Image {
             sourceSize.width: parent.width
             sourceSize.height: parent.height
-            source: "Images/Exit.png"
+            source: "../Pictures/Exit.png"
             fillMode: Image.PreserveAspectCrop
         }
         MouseArea{
             width: 30
             height:30
-            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+            onClicked: {
+                stack.push("MenuPrincipal.qml")
+                ventanaInformacionPersonal.visible = false
+            }
         }
     }
 
