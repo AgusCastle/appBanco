@@ -1,10 +1,10 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls 2.1 //ComboBox
-
 import QtQuick.Dialogs 1.1
 
 ApplicationWindow {
+    id: ventanaCrearCuenta
     visible: true
     width: 1200
     height: 700 
@@ -18,13 +18,15 @@ ApplicationWindow {
     }
 
 // -------------- Boton Salir -------------- //
-    Rectangle{
+    Button{
         id: returnCrearCuenta
         x: 10
         y: 10
         width: 30
         height: 30
-        color: "transparent"
+        background: Rectangle {
+            color: "transparent"
+        }
         Image {
             sourceSize.width: parent.width
             sourceSize.height: parent.height
@@ -34,7 +36,11 @@ ApplicationWindow {
         MouseArea{
             width: 30
             height:30
-            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+            onClicked: {
+                stack.push("./Inicio.qml")
+                ventanaCrearCuenta.visible = false
+            }
         }
     }
 
@@ -94,7 +100,6 @@ ApplicationWindow {
                 verticalAlignment: TextInput.AlignVCenter
                 font.pixelSize:20
                 color: "white"
-
                 property string placeholderText: "Nombre(s)"
 
                 Text {
@@ -112,7 +117,7 @@ ApplicationWindow {
         }
 
 // -------------- Input apellido paterno -------------- //
-                Rectangle { 
+        Rectangle { 
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
@@ -138,7 +143,6 @@ ApplicationWindow {
                 verticalAlignment: TextInput.AlignVCenter
                 font.pixelSize:20
                 color: "white"
-
                 property string placeholderText: "Apellido paterno"
 
                 Text {
@@ -156,7 +160,7 @@ ApplicationWindow {
         }
 
 // -------------- Input apellido materno -------------- //
-                Rectangle {
+        Rectangle {
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
@@ -182,7 +186,6 @@ ApplicationWindow {
                 verticalAlignment: TextInput.AlignVCenter
                 font.pixelSize:20
                 color: "white"
-
                 property string placeholderText: "Apellido materno"
 
                 Text {
@@ -200,7 +203,7 @@ ApplicationWindow {
         }
 
 // -------------- Input  NIP -------------- //
-                Rectangle {
+        Rectangle {
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
@@ -227,7 +230,6 @@ ApplicationWindow {
                 echoMode: TextInput.Password
                 font.pixelSize:20
                 color: "white"
-
                 property string placeholderText: "NIP"
 
                 Text {
@@ -245,7 +247,7 @@ ApplicationWindow {
         }
 
 // -------------- Input confirmar NIP -------------- //
-                Rectangle {
+        Rectangle {
             anchors {
                 horizontalCenter: parent.horizontalCenter
             }
@@ -272,7 +274,6 @@ ApplicationWindow {
                 echoMode: TextInput.Password
                 font.pixelSize:20
                 color: "white"
-
                 property string placeholderText: "Confirmar NIP"
 
                 Text {
@@ -384,12 +385,14 @@ ApplicationWindow {
                 anchors.fill: parent
                 hoverEnabled: true
 
-                onClicked:{
+                onClicked: {
                     if(nombre.text != "" && apellidoPaterno.text != "" && apellidoMaterno.text != "" && nip.text != "" && confirmarnip.text != "" && nip.text == confirmarnip.text){
                         var result = con.addClient(nombre.text, apellidoPaterno.text, apellidoMaterno.text, dia.currentIndex + 1, mes.currentIndex + 1, anio.currentValue, nip.text)
                         if (result){
                             messageDialog.text= "Usuario agregado"
                             messageDialog.visible = true
+                            stack.push("./Inicio.qml")
+                            ventanaCrearCuenta.visible = false
                         }
                     }
                 }
