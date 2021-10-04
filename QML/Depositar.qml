@@ -2,6 +2,7 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 
 ApplicationWindow {
+    id: ventanaDepositar
     visible: true
     width: 1200
     height: 700 
@@ -32,7 +33,11 @@ ApplicationWindow {
         MouseArea{
             width: 30
             height:30
-            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+            cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+            onClicked: {
+                stack.push("MenuPrincipal.qml")
+                ventanaDepositar.visible = false
+            }
         }
     }
 
@@ -80,7 +85,7 @@ ApplicationWindow {
                 } 
                 width:110
                 height:110
-                source: "Images/Deposit.png"
+                source: "../Pictures/Deposit.png"
             }
         }
 
@@ -127,7 +132,8 @@ ApplicationWindow {
                 height: 40
                 font.pixelSize:20
                 color: "white"
-
+                horizontalAlignment: TextInput.AlignHCenter
+                verticalAlignment: TextInput.AlignVCenter
                 property string placeholderText: "Monto:"
 
                 Text {
