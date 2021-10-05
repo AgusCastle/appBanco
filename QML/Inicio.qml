@@ -4,6 +4,7 @@ import QtQuick.Dialogs 1.1
 
 ApplicationWindow {
     property string nombre: "Raul"
+
     id: ventanaInicio
     visible: true
     width: 1200
@@ -196,15 +197,8 @@ ApplicationWindow {
                 onClicked:{
                     var resultado = con.sessionClient(numeroCuenta.text, nip.text)
                     if (resultado == true){
-                        //messageDialog.text= "Inicio de sesion correcto"
-                        //messageDialog.visible = true
-                        // var cmpt = Qt.createComponent("./MenuPrincipal.qml")
-                        // var win = cmpt.createObject()
-                        // win.nombre = con.getObjectModelClient(numeroCuenta.text)
-                        // win.show()
                         stack.push("./MenuPrincipal.qml")
                         ventanaInicio.visible = false
-                        //appInicio.close()
                     }
                     else{
                         messageDialog.text= "NIP o cuenta incorrecta"
@@ -244,8 +238,8 @@ ApplicationWindow {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
                 onClicked: {
-                    ventanaInicio.visible = false
                     stack.push("./CrearCuenta.qml")
+                    ventanaInicio.visible = false
                 }
             }
 

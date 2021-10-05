@@ -68,7 +68,7 @@ ApplicationWindow {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
-                text: "Bienvenido,  "+ nombre
+                text: "Bienvenido,  "+ con.getNameClient()
                 font.pixelSize: 40
                 color: "white"
             }
@@ -104,7 +104,7 @@ ApplicationWindow {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
-                text: "$ 4,000.00"
+                text: " "+con.getBalance()
                 font.pixelSize: 35
                 color: "white"
             }

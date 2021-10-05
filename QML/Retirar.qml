@@ -126,23 +126,23 @@ ApplicationWindow {
             }
 
             TextInput {
-                id: montoRetirno
+                id: montoRetiro
                 width: 300
                 height: 40
                 font.pixelSize:20
                 color: "white"
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
-                property string placeholderText: "Monto:"
+                property string placeholderText: "Monto"
 
                 Text {
                     anchors {
                         verticalCenter: parent.verticalCenter
                         horizontalCenter: parent.horizontalCenter
                     }
-                    text: montoRetirno.placeholderText
+                    text: montoRetiro.placeholderText
                     color: "white"
-                    visible: !montoRetirno.text && !montoRetirno.activeFocus
+                    visible: !montoRetiro.text && !montoRetiro.activeFocus
                     font.pixelSize:20
                     opacity: 0.7
                 }
@@ -157,7 +157,18 @@ ApplicationWindow {
             MouseArea{
                 width: 300
                 height:40
-                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+                onClicked:{
+                    var resultado = con.makeRetire(montoRetiro.text)
+                    if (resultado == true){
+                        messageDialog.text= "El retiro se realizo correctamente"
+                        messageDialog.visible = true
+                    }
+                    else{
+                        messageDialog.text= "Parece ser que no cuentas con suficiente efectivo"
+                        messageDialog.visible = true
+                    }
+                }
             }
             y: 550
             width: 150

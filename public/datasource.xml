@@ -8,7 +8,7 @@
             <mouth>12</mouth>
             <year>1999</year>
             <nip>5912</nip>
-            <balance>1000.05</balance>
+            <balance>950.05</balance>
         </user>
     </users>
     <users>
@@ -71,4 +71,28 @@
             <balance>0.00</balance>
         </user>
     </users>
-</data>
+    <users>
+        <user id="1007">
+            <name>Norma Leticia</name>
+            <lastname>Munguia</lastname>
+            <lastlname>Najera</lastlname>
+            <day>6</day>
+            <mouth>9</mouth>
+            <year>1988</year>
+            <nip>0000</nip>
+            <balance>0.00</balance>
+        </user>
+    </users>
+    <users>
+        <user id="1008">
+            <name>Socrates</name>
+            <lastname>Castillo</lastname>
+            <lastlname>Ruiz</lastlname>
+            <day>9</day>
+            <mouth>10</mouth>
+            <year>1981</year>
+            <nip>8888</nip>
+            <balance>0.00</balance>
+        </user>
+    </users>
+<users><user id="1009"><name>Samanta</name><lastname>Garcia</lastname><lastlname>Obrador</lastlname><day>9</day><mouth>9</mouth><year>1997</year><nip>2222</nip><balance>100.0</balance></user></users></data>

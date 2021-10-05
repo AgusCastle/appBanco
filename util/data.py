@@ -47,6 +47,20 @@ def obtenerUsers():
         listUsers.append(client_u)
     return listUsers
 
+def updateValue(numId, op, monto):
+    mytree = parse('public/datasource.xml')
+    myroot = mytree.getroot()
+
+    for element, ids in zip(myroot.iter('users'), myroot.iter('user')):
+        if ids.attrib['id'] == numId:
+            for elementos in element.iter('balance'):
+                if op == '+':
+                    elementos.text = str(float(elementos.text) + monto)
+                else:
+                    elementos.text = str(float(elementos.text) - monto)
+            break
+    mytree.write('public/datasource.xml')
+
 def getUltimoId():
     listU = obtenerUsers()
     size = len(obtenerUsers()) - 1

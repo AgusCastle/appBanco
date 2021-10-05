@@ -118,7 +118,7 @@ ApplicationWindow {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
-                text: "Luis Esteban Acevedo Bringas"
+                text: "" + con.nameComplete()
                 font.pixelSize: 25
                 color: "white"
             }
@@ -154,7 +154,7 @@ ApplicationWindow {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
-                text: "22 años"
+                text: ""+ con.getYears()
                 font.pixelSize: 25
                 color: "white"
             }
@@ -190,7 +190,7 @@ ApplicationWindow {
                 anchors {
                     horizontalCenter: parent.horizontalCenter
                 }
-                text: "AEBK990215"
+                text: "" + con.getRFC()
                 font.pixelSize: 25
                 color: "white"
             }

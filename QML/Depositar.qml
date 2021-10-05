@@ -134,7 +134,7 @@ ApplicationWindow {
                 color: "white"
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: TextInput.AlignVCenter
-                property string placeholderText: "Monto:"
+                property string placeholderText: "Monto"
 
                 Text {
                     anchors {
@@ -158,7 +158,19 @@ ApplicationWindow {
             MouseArea{
                 width: 300
                 height:40
-                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.NoButton
+                cursorShape: Qt.PointingHandCursor; acceptedButtons: Qt.Button
+
+                onClicked:{
+                    var resultado = con.makeDeposit(montoDeposito.text)
+                    if (resultado == true){
+                        messageDialog.text= "El deposito se realizo correctamente"
+                        messageDialog.visible = true
+                    }
+                    else{
+                        messageDialog.text= "Ocurrio un error en el deposito"
+                        messageDialog.visible = true
+                    }
+                }
             }
             y: 550
             width: 150

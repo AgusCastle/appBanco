@@ -372,6 +372,18 @@ ApplicationWindow {
                 Component.onCompleted: visible = false
             }
 
+            MessageDialog {
+                id: messageDialogt
+                title: "Aviso"
+                text: "Error"
+                onAccepted: {
+                    messageDialogt.close()
+                    stack.push("./Inicio.qml")
+                    ventanaCrearCuenta.visible = false
+                }
+                Component.onCompleted: visible = false
+            }
+
 // -------------- Boton Enviar -------------- //
         Rectangle {
             anchors {
@@ -387,12 +399,11 @@ ApplicationWindow {
 
                 onClicked: {
                     if(nombre.text != "" && apellidoPaterno.text != "" && apellidoMaterno.text != "" && nip.text != "" && confirmarnip.text != "" && nip.text == confirmarnip.text){
+
                         var result = con.addClient(nombre.text, apellidoPaterno.text, apellidoMaterno.text, dia.currentIndex + 1, mes.currentIndex + 1, anio.currentValue, nip.text)
                         if (result){
-                            messageDialog.text= "Usuario agregado"
-                            messageDialog.visible = true
-                            stack.push("./Inicio.qml")
-                            ventanaCrearCuenta.visible = false
+                            messageDialogt.text= "Usuario agregado y debes\n\n guardalo es importante para poder usarlo-> "+ con.getUltimoIds()
+                            messageDialogt.visible = true
                         }
                     }
                 }
