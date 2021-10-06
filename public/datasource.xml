@@ -44,7 +44,7 @@
             <mouth>2</mouth>
             <year>1999</year>
             <nip>9999</nip>
-            <balance>0.00</balance>
+            <balance>7000.0</balance>
         </user>
     </users>
     <users>
@@ -95,4 +95,28 @@
             <balance>0.00</balance>
         </user>
     </users>
-<users><user id="1009"><name>Samanta</name><lastname>Garcia</lastname><lastlname>Obrador</lastlname><day>9</day><mouth>9</mouth><year>1997</year><nip>2222</nip><balance>100.0</balance></user></users></data>
+    <users>
+        <user id="1009">
+            <name>Samanta</name>
+            <lastname>Garcia</lastname>
+            <lastlname>Obrador</lastlname>
+            <day>9</day>
+            <mouth>9</mouth>
+            <year>1997</year>
+            <nip>2222</nip>
+            <balance>110.0</balance>
+        </user>
+    </users>
+    <users>
+        <user id="1010">
+            <name>Alejandro</name>
+            <lastname>Pantoja</lastname>
+            <lastlname>Gonzalez</lastlname>
+            <day>1</day>
+            <mouth>9</mouth>
+            <year>2021</year>
+            <nip>2222</nip>
+            <balance>560.0</balance>
+        </user>
+    </users>
+</data>
